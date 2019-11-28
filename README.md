@@ -6,7 +6,7 @@ A draft version for AMQP wrapper.
 <dependency>
     <groupId>net.kut3.mq</groupId>
     <artifactId>amqp</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.7</version>
 </dependency>
 ```
 # Basic usecases
@@ -24,7 +24,7 @@ Before sending a message we must:
 - Declare a queue.
 - Declare an exchange.
    - Default exchange ("") doesn't need to be declared.
-   - Sending mode is declared as exchange type. Support sending modes:
+   - Sending mode is declared as exchange type. Supporting sending modes:
       - direct: send one message to one receiver
       - fanout: send one message to many receivers
 - Bind the declared queue to the declared exchange by a routing key.
@@ -45,8 +45,9 @@ producer.routingKey(queueName)
 producer.exchange(exchangeName)
         .produce(new Message("Fanout message"));
 ```
+#### Close ununsed producer
 A producer owns one connection so we must close it after use to release the connection by calling the `close()` method. Keep in mind, in most cases, you only need one producer for one receiver (reusability) and let the runtime environment closes it implicit on shutdown step by calling the `closeOnExit()` method in producer initialization step.
-## Consume (Receieve) messages
+## Consume (Receive) messages
 #### Initialize a consumer (receiver)
 ```
 Consumer consumer = connectionFactory.newConsumer()
