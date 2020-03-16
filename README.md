@@ -102,6 +102,6 @@ queues = queue01,queue02
 
 [queue01-queue]
 durable = false
-bind-exchange = exchangeName
-bind-key = routingKey
+binding-exchange = exchangeName
+routing-key = routingKey
 ```
